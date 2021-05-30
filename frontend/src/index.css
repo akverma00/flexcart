@@ -116,7 +116,7 @@ img.medium {
   width: 100%;
 }
 img.large{
-  width: 100%;
+  max-width: 100%;
 }
 /*Card*/
 .card {
