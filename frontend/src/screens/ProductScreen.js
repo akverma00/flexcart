@@ -14,6 +14,8 @@ export default function ProductScreen(props) {
             <Link to="/">Back to results</Link>
             <div className="row top">
                 <div className="col-2">
+
+                    {console.log(product.image)}
                     <img className="large" src={product.image} alt={product.name} />
                 </div>
                 <div className="col-1">
