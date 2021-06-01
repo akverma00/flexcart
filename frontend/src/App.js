@@ -21,7 +21,7 @@ function App() {
         </header>
         <main>
           <Route path="/" component={HomeScreen} exact />
-          <Route path='/product/:id' component={ProductScreen} />
+          <Route path="/product/:id" component={ProductScreen} />
         </main>
         <footer className="row center">Designed by Arun</footer>
       </div>
