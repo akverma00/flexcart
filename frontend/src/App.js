@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom"
+import CartScreen from "./screens/CartScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 
@@ -15,13 +16,14 @@ function App() {
           </a>
           </div>
           <div>
-            <a href="/cart"> Cart </a>
-            <a href="/signin"> Signin </a>
+            <a href="/cart">Cart</a>
+            <a href="/signin">Signin</a>
           </div>
         </header>
         <main>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/product/:id" component={ProductScreen} />
+          <Route path="/cart/:id?" component={CartScreen} />
         </main>
         <footer className="row center">Designed by Arun</footer>
       </div>
