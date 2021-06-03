@@ -1,9 +1,17 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
 
+dotenv.config();
+
 const app = express();
+//middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//dbconnect
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/flexcart', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
