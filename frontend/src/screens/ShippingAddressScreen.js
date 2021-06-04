@@ -106,7 +106,7 @@ export default function ShippingAddressScreen(props) {
                         className="primary"
                         type='submit'
                     >
-                        Proceed to Payment
+                        Continue
                     </button>
                 </div>
 
