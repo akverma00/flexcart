@@ -5,6 +5,7 @@ import { signout } from "./actions/userActions";
 import CartScreen from "./screens/CartScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 import SigninScreen from "./screens/SigninScreen";
 
 
@@ -50,7 +51,10 @@ function App() {
 
                 </div>
               ) : (
-                <Link to="/signin">Signin</Link>
+                <>
+                  <Link to="/signin">Signin</Link>
+                  <Link to="/register">Register</Link>
+                </>
               )
             }
           </div>
@@ -60,6 +64,7 @@ function App() {
           <Route path="/product/:id" component={ProductScreen} />
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/signin" component={SigninScreen} />
+          <Route path="/register" component={RegisterScreen} />
         </main>
         <footer className="row center">Designed by Arun</footer>
       </div>

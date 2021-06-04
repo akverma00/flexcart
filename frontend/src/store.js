@@ -8,6 +8,7 @@ import {
     productListReducer
 } from './reducers/productReducers'
 import {
+    userRegisterReducer,
     userSigninReducer
 } from './reducers/userReducers';
 
@@ -29,6 +30,7 @@ const reducer = combineReducers({
     productDetails: productDetailsReducer,
     cart: cartReducer,
     userSignin: userSigninReducer,
+    userRegister: userRegisterReducer,
 });
 
 //Added to view in chrome in dev. tools

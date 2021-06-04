@@ -4,15 +4,19 @@ import { Link } from 'react-router-dom';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
-import { signin } from '../actions/userActions';
+import { register } from '../actions/userActions';
 
 
-export default function SigninScreen(props) {
+export default function RegisterScreen(props) {
 
     // eslint-disable-next-line no-unused-vars
     const [email, setEmail] = useState('');
     // eslint-disable-next-line no-unused-vars
+    const [name, setName] = useState('');
+    // eslint-disable-next-line no-unused-vars
     const [password, setPassword] = useState('');
+    // eslint-disable-next-line no-unused-vars
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     // eslint-disable-next-line react/prop-types
     const redirect = props.location.search
@@ -21,14 +25,20 @@ export default function SigninScreen(props) {
         : '/';
 
 
-    const userSignin = useSelector((state => state.userSignin));
-    const { userInfo, loading, error } = userSignin;
+    const userRegister = useSelector((state => state.userRegister));
+    const { userInfo, loading, error } = userRegister;
 
     const dispatch = useDispatch();
+
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(signin(email, password));
+        if (password !== confirmPassword) {
+            alert('Passwords do not match');
+        } else {
+            dispatch(register(name, email, password));
+        }
     };
+
     useEffect(() => {
         if (userInfo) {
             // eslint-disable-next-line react/prop-types
@@ -41,10 +51,25 @@ export default function SigninScreen(props) {
         <div>
             <form className='form' onSubmit={submitHandler}>
                 <div>
-                    <h1>Sign In</h1>
+                    <h1>Register</h1>
                 </div>
                 {loading && <LoadingBox></LoadingBox>}
                 {error && <MessageBox variant='danger' >{error}</MessageBox>}
+                <div>
+                    <label
+                        htmlFor='name'
+                    >
+                        Name
+                    </label>
+                    <input
+                        type='text'
+                        name='name'
+                        id='name'
+                        placeholder='Enter name'
+                        required
+                        onChange={e => setName(e.target.value)}
+                    ></input>
+                </div>
                 <div>
                     <label
                         htmlFor='email'
@@ -74,6 +99,20 @@ export default function SigninScreen(props) {
                         required
                         onChange={e => setPassword(e.target.value)}
                     ></input>
+                </div><div>
+                    <label
+                        htmlFor='confirmPassword'
+                    >
+                        Confirm Password
+                    </label>
+                    <input
+                        type='password'
+                        name='confirmPassword'
+                        id='confirmPassword'
+                        placeholder='ReEnter password'
+                        required
+                        onChange={e => setConfirmPassword(e.target.value)}
+                    ></input>
                 </div>
                 <div>
                     <label />
@@ -81,14 +120,14 @@ export default function SigninScreen(props) {
                         className="primary"
                         type='submit'
                     >
-                        Sign In
+                        Register
                     </button>
                 </div>
                 <div>
                     <label />
                     <div>
-                        New Customer? {' '}
-                        <Link to={`/register?redirect=${redirect}`}>Create Your Account</Link>
+                        Already have an account? {' '}
+                        <Link to={`/signin?redirect=${redirect}`}>Sign-In</Link>
                     </div>
                 </div>
             </form>
